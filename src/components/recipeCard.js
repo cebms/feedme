@@ -4,22 +4,22 @@ import { Feather } from '@expo/vector-icons'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import { useNavigation } from '@react-navigation/native'
 
-const RecipeCard = ({ title }) => {
+const RecipeCard = ({ title, image, area, category, id }) => {
     const Navigation = useNavigation()
     return(
         <TouchableOpacity activeOpacity={.8} onPress={() => {Navigation.navigate('Details')}}>
             <View style={styles.container}>
                 <View>
-                    <Image style={styles.image} source={require('../assets/burger.jpg')} />
+                    <Image style={styles.image} source={{uri: image}} />
                 </View>
                 <View style={styles.bar}>
                     <View style={styles.info}>
-                        <View><Text style={styles.nameText}>{ title }</Text></View>
+                        <View style={{width:208}}><Text numberOfLines={1} style={styles.nameText}>{ title }</Text></View>
                         <View style={styles.tags}>
                             <Image style={styles.tagImage} source={require('../assets/tag.png')} />
-                            <Text style={styles.tagText}>Lamb</Text>
+                            <Text numberOfLines={1} style={styles.tagText}>{ category }</Text>
                             <Image style={styles.tagImage} source={require('../assets/world.png')} />
-                            <Text style={styles.tagText}>Greek</Text>
+                            <Text numberOfLines={1} style={styles.tagText}>{ area }</Text>
                         </View>
                     </View>
                     <View style={styles.button}>
@@ -73,6 +73,7 @@ const styles = StyleSheet.create({
         marginTop: 8
     },
     tagText: {
+        width: 55,
         color: '#FFF',
         fontSize: 14,
         fontFamily: 'Ubuntu_700Bold',

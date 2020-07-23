@@ -1,10 +1,9 @@
-import React, { useEffect, useState} from 'react'
+import React from 'react'
 import { View, Text, Image } from 'react-native'
 
 import RecipeCard from '../../components/recipeCard'
 import styles from './styles'
 
-import spoonacular from '../../apis/spoonacular'
 
 import useResults from '../../hooks/useResults'
 import { FlatList } from 'react-native-gesture-handler'
@@ -12,6 +11,7 @@ import { FlatList } from 'react-native-gesture-handler'
 const Home = () => {
     const results = useResults()
     //console.log(results.recipes[0] == undefined?'ainda n':results.recipes[0].title)
+    //console.log(results)
     return (
         <View style={styles.container}>
             <View style={styles.header}>
@@ -20,10 +20,18 @@ const Home = () => {
             </View>
             <View style={{alignSelf: 'center'}}>
                 <FlatList
-                    data={results.recipes}
-                    keyExtractor={(item) => item.title}
+                    data={results}
+                    keyExtractor={(item) => {
+                        return (Math.random()*100).toString()
+                    }}
                     renderItem={(item) => {return(
-                        <RecipeCard title={results.recipes[item.index].title} />
+                        <RecipeCard
+                            title={results[item.index].strMeal}
+                            image={results[item.index].strMealThumb}
+                            area={results[item.index].strArea}
+                            category={results[item.index].strCategory}
+                            id={results[item.index].idMeal}
+                        />
                     )}}
                 />
             </View>

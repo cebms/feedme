@@ -6,10 +6,10 @@ export default () => {
 
     const searchApi = async() => {
         try{
-            const response = await spoonacular.get('recipes/random',{params: {apiKey: 'ae4f3f51d512408cb77ddf6e9b5acf7e', number:2}})
-            setResults(response.data)
+            const response = await spoonacular.get('random.php')
+            setResults(response.data.meals)
         } catch(error){
-            console.log("error(carlos)")
+            console.log(error)
         }
     }
 
