@@ -5,7 +5,7 @@ import Constants from 'expo-constants'
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingTop: Constants.statusBarHeight + 5
+        paddingTop: Constants.statusBarHeight
     },
     header: {
         alignItems: 'center',
@@ -22,7 +22,10 @@ const styles = StyleSheet.create({
         color: '#41414d',
         fontSize: 18,
         fontFamily: 'Ubuntu_700Bold'
-        }
+    },
+    loading: {
+        marginVertical: 10
+    }
 })
 
 export default styles

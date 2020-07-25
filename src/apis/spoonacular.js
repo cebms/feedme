@@ -2,5 +2,5 @@ import React from 'react'
 import axios from 'axios'
 
 export default axios.create({
-    baseURL: 'https://www.themealdb.com/api/json/v1/1',
+    baseURL: 'https://api.edamam.com',
 })

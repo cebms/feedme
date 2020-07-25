@@ -4,10 +4,10 @@ import { Feather } from '@expo/vector-icons'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import { useNavigation } from '@react-navigation/native'
 
-const RecipeCard = ({ title, image, area, category, id }) => {
+const RecipeCard = ({ title, image, tag, ingrLines, ingr, src }) => {
     const Navigation = useNavigation()
     return(
-        <TouchableOpacity activeOpacity={.8} onPress={() => {Navigation.navigate('Details')}}>
+        <TouchableOpacity activeOpacity={.8} onPress={() => {Navigation.navigate('Details', { title: title, image: image, tag: tag, ingrLines: ingrLines, ingr: ingr, src: src })}}>
             <View style={styles.container}>
                 <View>
                     <Image style={styles.image} source={{uri: image}} />
@@ -17,9 +17,8 @@ const RecipeCard = ({ title, image, area, category, id }) => {
                         <View style={{width:208}}><Text numberOfLines={1} style={styles.nameText}>{ title }</Text></View>
                         <View style={styles.tags}>
                             <Image style={styles.tagImage} source={require('../assets/tag.png')} />
-                            <Text numberOfLines={1} style={styles.tagText}>{ category }</Text>
-                            <Image style={styles.tagImage} source={require('../assets/world.png')} />
-                            <Text numberOfLines={1} style={styles.tagText}>{ area }</Text>
+                            <Text numberOfLines={1} style={styles.tagText}>{tag}</Text>
+                            
                         </View>
                     </View>
                     <View style={styles.button}>
@@ -36,13 +35,13 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: '#662E9B',
         height: 175,
-        width: 280,
+        width: '100%',
         borderRadius: 16,
         marginTop: 8
     },
     image: {
         height: 119,
-        width: 280,
+        width: 320,
         borderTopLeftRadius: 16,
         borderTopRightRadius: 16
     },
@@ -73,7 +72,7 @@ const styles = StyleSheet.create({
         marginTop: 8
     },
     tagText: {
-        width: 55,
+        width: 150,
         color: '#FFF',
         fontSize: 14,
         fontFamily: 'Ubuntu_700Bold',
