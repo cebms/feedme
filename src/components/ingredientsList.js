@@ -1,8 +1,7 @@
 import React from 'react'
-import { View, Text, StyleSheet, Image, FlatList } from 'react-native'
+import { View, StyleSheet, Image, FlatList } from 'react-native'
 
 const IngredientsList = ({ingredients}) => {
-    //const temp = ['a','b','c','d','e']
     return(
         <View style={{flexDirection:'row'}}>
             <FlatList

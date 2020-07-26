@@ -5,20 +5,32 @@ import { FlatList } from 'react-native-gesture-handler'
 import RecipeCard from '../../components/recipeCard'
 import styles from './styles'
 
-
-//import useResults from '../../hooks/useResults'
 import spoonacular from '../../apis/spoonacular'
 
 const Home = () => {
     const [results, setResults] = useState([])
     const [loading, setLoading] = useState(false)
+    const alphabet = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
+
+    const hours = new Date().getHours()
+
+    const getGreeting = (hours) => {
+        let greeting = 'afternoon'
+        greeting = hours>=18?'evening':greeting
+        greeting = hours<=12?'morning':greeting
+        return greeting
+    }
+    
 
     const searchApi = async() => {
+        const num = Math.floor(Math.random()*25)
+        const term = alphabet[num]
+        
         try{
             const response = await spoonacular.get('search',{params: {
                 app_id: '2a126c57',
                 app_key: 'd0584cebbbd61003fd402979e7b5f37f',
-                q: 'pizza',
+                q: term,
                 to: 12
             }})
             setLoading(true)
@@ -40,16 +52,12 @@ const Home = () => {
             </View>
         )
     }
-
-
-    //console.log(results)
-    //let results = useResults()
-    //console.log(results.recipes[0] == undefined?'ainda n':results.recipes[0].title)
+    
     return (
         <View style={styles.container}>
             <View style={styles.header}>
                 <Text style={styles.pageName}>Home</Text>
-                <Text style={styles.welcome}>What will we cook today?</Text>
+                <Text style={styles.welcome}>Good {getGreeting(hours)}, what will we cook today?</Text>
             </View>
             <View style={{alignSelf: 'center'}}>
                 <FlatList style={{marginBottom: '15%'}}

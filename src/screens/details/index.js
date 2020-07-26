@@ -11,8 +11,6 @@ import IngredientsList from '../../components/ingredientsList'
 const Details = ({ route, navigation }) => {
     const Navigation = useNavigation()
     const { title, image, tag, ingrLines, ingr, src } = route.params
-    //fazer o filter do array ingr
-    //console.log(src)
     
     function getUris(ingredients){
         return ingredients.image != null 
