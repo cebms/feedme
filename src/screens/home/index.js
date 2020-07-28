@@ -5,7 +5,7 @@ import { FlatList } from 'react-native-gesture-handler'
 import RecipeCard from '../../components/recipeCard'
 import styles from './styles'
 
-import spoonacular from '../../apis/spoonacular'
+import edamam from '../../apis/edamam'
 
 const Home = () => {
     const [results, setResults] = useState([])
@@ -27,9 +27,9 @@ const Home = () => {
         const term = alphabet[num]
         
         try{
-            const response = await spoonacular.get('search',{params: {
-                app_id: '2a126c57',
-                app_key: 'd0584cebbbd61003fd402979e7b5f37f',
+            const response = await edamam.get('search',{params: {
+                app_id: 'YOUR_EDAMAM_APP_ID',
+                app_key: 'YOUR_EDAMAM_APP_KEY',
                 q: term,
                 to: 12
             }})
